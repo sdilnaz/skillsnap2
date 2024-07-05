@@ -40,7 +40,7 @@ interface ResponseCardProps {
 
 export function ResponseCard({ evaluation }: ResponseCardProps) {
   return (
-    <Card className="w-full max-w-2xl p-4">
+    <Card className="w-full max-w-2xl p-4 bg-transparent backdrop-blur-sm ">
       <CardHeader>
         <CardTitle>Photo Analysis</CardTitle>
         <CardDescription>Feedback from the AI on your photo</CardDescription>
@@ -88,72 +88,3 @@ export function ResponseCard({ evaluation }: ResponseCardProps) {
     </Card>
   );
 }
-// import React from 'react';
-
-// interface Evaluation {
-//   composition: {
-//     feedback: string;
-//     suggestions_for_improvement: string;
-//     score: number;
-//   };
-//   lighting: {
-//     feedback: string;
-//     suggestions_for_improvement: string;
-//     score: number;
-//   };
-//   exposure: {
-//     feedback: string;
-//     suggestions_for_improvement: string;
-//     score: number;
-//   };
-//   placement_of_objects: {
-//     feedback: string;
-//     suggestions_for_improvement: string;
-//     score: number;
-//   };
-//   rule_of_thirds: {
-//     feedback: string;
-//     suggestions_for_improvement: string;
-//     score: number;
-//   };
-//   strong_sides_of_photo: {
-//     feedback: string;
-//   };
-//   suggestions_for_improvement: {
-//     feedback: string;
-//   };
-// }
-
-
-// interface FeedbackDisplayProps {
-//   feedbackData: Evaluation;
-// }
-
-// const FeedbackDisplay: React.FC<FeedbackDisplayProps> = ({ feedbackData }) => {
-//   return (
-//     <div className="flex flex-wrap gap-4 p-4 bg-gray-100 rounded shadow-md">
-//       {Object.entries(feedbackData).map(([key, value]) => (
-//         <div key={key} className="w-full md:w-1/2 lg:w-1/3 px-4 mb-4">
-//           <div className="bg-white p-4 rounded shadow-md">
-//             <h2 className="text-lg font-semibold mb-2">{key.replace(/_/g, ' ')}</h2>
-//             {typeof value === 'object' ? (
-//               <>
-//                 <p><strong>Feedback:</strong> {value.feedback}</p>
-//                 {value.suggestions_for_improvement && (
-//                   <p><strong>Suggestions for Improvement:</strong> {value.suggestions_for_improvement}</p>
-//                 )}
-//                 {value.score !== undefined && (
-//                   <p><strong>Score:</strong> {value.score}</p>
-//                 )}
-//               </>
-//             ) : (
-//               <p>{value}</p>
-//             )}
-//           </div>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default FeedbackDisplay;

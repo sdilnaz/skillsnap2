@@ -8,7 +8,7 @@ const tailwindConfig: Config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx,mdx}', // Added content path for UploadThing
+    './src/**/*.{ts,tsx,mdx}', 
   ],
   prefix: "",
   theme: {
@@ -74,6 +74,12 @@ const tailwindConfig: Config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      backgroundImage: {
+        'custom-bg': "url('/images/background.jpg')",
+      },
+      fontFamily: {
+        custom: ['CustomFont', 'sans-serif'], 
       },
     },
   },

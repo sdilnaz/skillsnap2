@@ -59,6 +59,7 @@ class GptService {
             }
 
             const resJson: string = response.choices[0].message.content;
+            
             return resJson;
         } catch (error: any) {
             console.error('Error evaluating image:', error.message);

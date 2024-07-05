@@ -5,6 +5,7 @@ import Navbar from '@/components/ui/navbar';
 // import PhotoSection from '../components/PhotoSection';
 import Footer from '@/components/ui/footer';
 import ImageUpload from "@/components/imageUpload";
+import PreviewMainPage from '@/components/mainPage';
 
 const Home: React.FC = () => {
   return (
@@ -19,6 +20,7 @@ const Home: React.FC = () => {
       <Header />
       {/* <FeatureSection />
       <PhotoSection /> */}
+      <PreviewMainPage/>
       <ImageUpload />
       {/* <Footer /> */}
     </div>

@@ -14,6 +14,7 @@ gptRouter.post('/evaluate', async (req: Request, res: Response) => {
         }
 
         const evaluation = await gptService.evaluateImage(imageUrl);
+        console.log('OpenAI API response:', JSON.parse(evaluation));
         res.status(200).json(JSON.parse(evaluation));
     } catch (error) {
         console.error('Error evaluating image:', error);

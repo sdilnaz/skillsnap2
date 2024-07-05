@@ -2,9 +2,8 @@
 import { useState } from "react";
 import Image from 'next/image';
 import { UploadDropzone } from "@/utils/uploadthing";
-import  {ResponseCard} from "./response-card";
-import axios from 'axios'
-import { headers } from "next/headers";
+import { ResponseCard } from "./response-card";
+import axios from 'axios';
 
 const ImageUpload = () => {
     const [imageUrl, setImageUrl] = useState<string>('');
@@ -33,9 +32,10 @@ const ImageUpload = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-            })
+            });
 
             setEvaluation(evaluatedResponse.data.evaluation);
+            console.log(evaluation);
 
         } catch (error) {
             console.error('Error during image processing:', error);
@@ -43,29 +43,33 @@ const ImageUpload = () => {
     };
 
     return (
-        <div className="flex min-h-screen flex-col items-center justify-between p-24">
-            <UploadDropzone
-                endpoint='imageUploader'
-                onClientUploadComplete={handleUploadComplete}
-                onUploadError={(error: Error) => {
-                    alert(`ERROR! ${error.message}`);
-                }}
-            />
+        <div className="flex flex-col items-center justify-center min-h-screen p-24">
+            <h2 className="text-3xl font-bold mb-4">Get Feedback</h2> 
+            
+            <div className="w-full max-w-[70%] mt-4 flex flex-col items-center"> 
+                {!imageUrl && (
+                    <UploadDropzone
+                        endpoint='imageUploader'
+                        onClientUploadComplete={handleUploadComplete}
+                        onUploadError={(error: Error) => {
+                            alert(`ERROR! ${error.message}`);
+                        }}
+                        className="bg-transparent backdrop-blur-lg shadow-l ut-label:text-orange-600 ut-button:bg-transparent ut-button:text-gray-700 ut-button:border-2 ut-button:border-gray-700 ut-button:rounded-full ut-button:transition ut-button:duration-300 hover:ut-button:bg-orange-500 hover:ut-button:text-gray-700 ut-button:ut-readying:bg-orange-500/50  "
+                    />
+                )}
 
-            {imageUrl && (
-                <div>
-                    <Image src={imageUrl} alt='my image' width={500} height={300} />
-                </div>
-            )}
+                {imageUrl && (
+                    <div className="mt-8">
+                        <Image src={imageUrl} alt='my image' width={500} height={300} className="rounded-lg" />
+                    </div>
+                )}
 
-            {evaluation && (
-                <div>
-                    <h1>Evaluation:</h1>
-                    <h2>Composition:</h2>
-                    <p>Feedback: {evaluation.composition.feedback}</p>
-                    <p>Suggestions: {evaluation.composition.suggestions_for_improvement}</p>
-                </div>
-            )}
+                {evaluation && (
+                    <div className="mt-8">
+                        <ResponseCard evaluation={evaluation} />
+                    </div>
+                )}
+            </div>
         </div>
     );
 };
