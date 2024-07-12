@@ -1,0 +1,63 @@
+[
+  {
+    "level": "beginner",
+    "sublevels": [
+      {
+        "title": "Основные настройки камеры",
+        "tasks": [
+          {
+            "taskNumber": 1,
+            "description": "Сделайте фото, демонстрирующее ваше понимание основных настроек камеры.",
+            "maxPhotos": 5
+          }
+        ],
+        "lessons": [
+          {
+            "lessonNumber": 1,
+            "title": "ISO",
+            "content": "ISO - это уровень чувствительности вашей камеры к свету. При низких значениях ISO изображение будет темнее, при высоких - светлее.",
+            "examples": [
+              {
+                "description": "Пример изображения с низким ISO",
+                "imageUrl": "example-low-iso.jpg"
+              },
+              {
+                "description": "Пример изображения с высоким ISO",
+                "imageUrl": "example-high-iso.jpg"
+              }
+            ],
+            "tasks": [
+              {
+                "taskNumber": 1,
+                "description": "Сделайте два фото с низким и высоким ISO, чтобы увидеть разницу.",
+                "maxPhotos": 2
+              }
+            ]
+          },
+          {
+            "lessonNumber": 2,
+            "title": "Выдержка",
+            "content": "Выдержка - это время, в течение которого затвор камеры открыт. Длинная выдержка позволяет больше света попадать на сенсор, но может размыть движение.",
+            "examples": [
+              {
+                "description": "Пример с короткой выдержкой",
+                "imageUrl": "example-short-shutter.jpg"
+              },
+              {
+                "description": "Пример с длинной выдержкой",
+                "imageUrl": "example-long-shutter.jpg"
+              }
+            ],
+            "tasks": [
+              {
+                "taskNumber": 2,
+                "description": "Сделайте фото с короткой и длинной выдержкой.",
+                "maxPhotos": 2
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

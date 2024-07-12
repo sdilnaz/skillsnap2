@@ -1,11 +1,10 @@
 import Head from 'next/head';
 import Header from '@/components/ui/header';
 import Navbar from '@/components/ui/navbar';
-// import FeatureSection from '../components/FeatureSection';
-// import PhotoSection from '../components/PhotoSection';
 import Footer from '@/components/ui/footer';
 import ImageUpload from "@/components/imageUpload";
 import PreviewMainPage from '@/components/mainPage';
+import LessonTitle from '@/components/ui/lessonTitle';
 
 const Home: React.FC = () => {
   return (
@@ -21,6 +20,7 @@ const Home: React.FC = () => {
       {/* <FeatureSection />
       <PhotoSection /> */}
       <PreviewMainPage/>
+     
       <ImageUpload />
       {/* <Footer /> */}
     </div>
@@ -28,3 +28,6 @@ const Home: React.FC = () => {
 };
 
 export default Home;
+
+
+// isCompleted={completedLessons.includes(lesson._id)}

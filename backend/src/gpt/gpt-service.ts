@@ -1,5 +1,5 @@
 
-import openai from '../openai';
+import openai from './openai';
 import fetch from 'node-fetch';
 import { Buffer } from 'buffer';
 import { systemPromptJsonExample } from './gpt-types';

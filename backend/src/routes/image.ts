@@ -1,7 +1,7 @@
 
 import { Router, Request, Response } from 'express';
-import connectToMongoDB from './database/connect';
-import Image from './models/imageModel';
+import connectToMongoDB from '../database/connect';
+import Image from '../models/imageModel';
 
 const imageRouter = Router();
 
