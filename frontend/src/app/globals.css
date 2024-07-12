@@ -77,17 +77,16 @@
 
   @layer base {
     * {
-      @apply border-border;
+        @apply border-border;
     }
     body {
-      @apply bg-custom-bg bg-cover bg-center text-foreground bg-fixed;
+        @apply bg-FFFEFD bg-cover bg-center text-foreground ;
     }
     .navbar {
-      @apply bg-custom-bg bg-cover bg-fixed;
-      background-color: rgba(255, 255, 255, 0.3);
+        @apply bg-transparent bg-cover;
+        background-color: rgba(255, 255, 255, 0.3); 
     }
+}
 
-    
-  }
   
   

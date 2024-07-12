@@ -1,17 +1,30 @@
-// components/Header.tsx
 import React from 'react';
-import '../../styles/fontStyle.css'
-
+import Image from 'next/image';
 
 const Header: React.FC = () => {
   return (
-    <header className="bg-transparent shadow flex justify-center items-center ">
-      <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight text-gray-900 font-custom">
-          PHOTOGRAPHY
+    <header className="relative h-screen w-full">
+      <Image
+        src="/images/main.jpg" 
+        alt="Hero Image"
+        fill
+        style={{ objectFit: 'cover' }}
+        className="absolute inset-0 -z-10"
+      />
+      <div className="absolute inset-0 bg-black/50 -z-10" /> 
+      <div className="absolute top-20 left-6 space-y-2">
+        <h1 className="text-4xl font-bold tracking-tighter text-white sm:text-4xl md:text-5xl lg:text-6xl">
+          Мастерская фотографии
         </h1>
-        <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-orange-500 mt-4">
-          Enhance your photography skills
+        <div className='mt-4'>
+          <p className="text-lg text-white md:text-xl mt-4">
+            Улучши свои навыки и раскрой свой потенциал
+          </p>
+        </div>
+      </div>
+      <div className="absolute bottom-1 left-20 w-80 bg-black bg-opacity-50 p-7 rounded-lg shadow-lg">
+        <p className="text-m text-white">
+          Персонализированные уроки в зависимости от вашего уровня и скиллов в фотографии. Выполняй задания после каждого урока и получай обратную связь за считанные секунды.
         </p>
       </div>
     </header>

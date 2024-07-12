@@ -1,3 +1,4 @@
+
 'use client'
 import { useState } from "react";
 import Link from "next/link";
@@ -17,7 +18,7 @@ export default function Component() {
   const [isOpen, setIsOpen] = useState(false);
   
   return (
-    <header className="navbar sticky top-0 z-50 flex h-16 w-full items-center justify-between bg-custom-bg bg-opacity-70 shadow px-4 md:px-6">
+    <header className="navbar sticky top-0 z-50 flex h-16 w-full items-center justify-between px-4 md:px-6 bg-white bg-opacity-10"> {/* Updated background */}
       <Link href="#" className="flex items-center gap-2" prefetch={false}>
         <Image 
           src="/images/logo.png" 
@@ -31,11 +32,11 @@ export default function Component() {
       </Link>
       <nav className="flex items-center space-x-4"> 
         <div className="hidden md:flex space-x-4"> 
-          <NavLink href="#" text="Home" />
-          <NavLink href="#" text="Evaluate" />
-          <NavLink href="#" text="Courses" />
-          <NavLink href="#" text="Gallery" />
-          <NavLink href="#" text="Log in" />
+          <NavLink href="#" text="Оценить фото" />
+          <NavLink href="#" text="Курс" />
+          <NavLink href="#" text="Галлерея" />
+          <NavLink href="#" text="О Нас" />
+          <NavLink href="#" text="Вход" />
         </div>
         <Button variant="primary" size="icon" className="ml-auto md:hidden" onClick={() => setIsOpen(!isOpen)}>
           <MenuIcon className="h-6 w-6 bg-transparent" />
@@ -45,14 +46,13 @@ export default function Component() {
       {isOpen && (
         <div className="absolute top-16 left-0 w-full bg-custom-bg bg-opacity-70 px-4 py-4 shadow-lg md:hidden">
           <nav className="flex flex-col items-center gap-2">
-            <NavLink href="#" text="Home" />
-            <NavLink href="#" text="Evaluate" />
-            <NavLink href="#" text="Courses" />
-            <NavLink href="#" text="Gallery" />
-            <NavLink href="#" text="Log in" />
+            <NavLink href="#" text="Оценить фото" />
+            <NavLink href="#" text="Курс" />
+            <NavLink href="#" text="Галлерея" />
+            <NavLink href="#" text="О Нас" />
+            <NavLink href="#" text="Вход" />
           </nav>
         </div>
-      
       )}
     </header>
   )

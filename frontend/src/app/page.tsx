@@ -5,6 +5,7 @@ import Footer from '@/components/ui/footer';
 import ImageUpload from "@/components/imageUpload";
 import PreviewMainPage from '@/components/mainPage';
 import LessonTitle from '@/components/ui/lessonTitle';
+import TutorCard from '@/components/tutorCard';
 
 const Home: React.FC = () => {
   return (
@@ -12,7 +13,7 @@ const Home: React.FC = () => {
       <Head>
         <title>SkillSnap</title>
         <meta name="description" content="Enhance your photography skills" />
-        <link rel="icon" href="/favicon.ico" />
+        
       </Head>
 
       <Navbar />
@@ -22,6 +23,7 @@ const Home: React.FC = () => {
       <PreviewMainPage/>
      
       <ImageUpload />
+      <TutorCard/>
       {/* <Footer /> */}
     </div>
   );
