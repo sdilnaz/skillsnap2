@@ -44,8 +44,10 @@ const ImageUpload = () => {
 
     return (
         <div className="flex flex-col items-center justify-center  p-24">
-            {/* <h2 className="text-3xl font-bold mb-4">Get Feedback</h2>  */}
-            
+            <h2 className="text-2xl font-bold mb-4">Оцени свои фотографии</h2> 
+            <p className="text-muted-foreground text-md mb-4 text-left w-[full] max-w-[100%]">
+            Загрузи фото для получения подробного фидбека
+            </p>
             <div className="w-full max-w-[100%] mt-4 flex flex-col items-center"> 
                 {!imageUrl && (
                     <UploadDropzone
@@ -54,7 +56,7 @@ const ImageUpload = () => {
                         onUploadError={(error: Error) => {
                             alert(`ERROR! ${error.message}`);
                         }}
-                        className="bg-transparent backdrop-blur-lg shadow-l ut-label:text-orange-600 ut-button:bg-transparent ut-button:text-gray-700 ut-button:border-2 ut-button:border-gray-700 ut-button:rounded-full ut-button:transition ut-button:duration-300 hover:ut-button:bg-orange-500 hover:ut-button:text-gray-700 ut-button:ut-readying:bg-orange-500/50 w-full max-w-[80%] md:max-w-[70%] lg:max-w-[60%] xl:max-w-[50%] mt-4"
+                        className="bg-transparent backdrop-blur-lg shadow-l ut-label:text-orange-600 ut-button:bg-transparent ut-button:text-gray-700 ut-button:border-2 ut-button:border-gray-700 ut-button:rounded-full ut-button:transition ut-button:duration-300 hover:ut-button:bg-orange-500 hover:ut-button:text-gray-700 ut-button:ut-readying:bg-orange-500/50 w-full max-w-[80%] md:max-w-[70%] lg:max-w-[60%] xl:max-w-[58.5%] mt-4"
                         />
                 )}
 

@@ -41,3 +41,22 @@ export const systemPromptJsonExample = `
   }
 }
 `
+
+export const lessonPrompt = `
+{
+  "title": "",
+  "content": "",
+  "tasks": [
+    {
+      "taskNumber": 1,
+      "description": "",
+      "maxPhotos": 
+    },
+    {
+      "taskNumber": 2,
+      "description": "",
+      "maxPhotos": 
+    }
+  ]
+}
+`

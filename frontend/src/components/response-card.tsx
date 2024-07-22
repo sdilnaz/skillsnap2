@@ -43,7 +43,6 @@ export function ResponseCard({ evaluation }: ResponseCardProps) {
     <Card className="w-full max-w-2xl p-4 bg-transparent backdrop-blur-sm ">
       <CardHeader>
         <CardTitle>Photo Analysis</CardTitle>
-        <CardDescription>Feedback from the AI on your photo</CardDescription>
       </CardHeader>
       <CardContent className="grid gap-6">
         <div className="grid gap-4">
@@ -56,7 +55,7 @@ export function ResponseCard({ evaluation }: ResponseCardProps) {
           <h3 className="text-xl font-semibold">Lighting</h3>
           <p><strong>Feedback:</strong> {evaluation.lighting.feedback}</p>
           <p><strong>Suggestions for Improvement:</strong> {evaluation.lighting.suggestions_for_improvement}</p>
-          <p><strong>Score:</strong> {evaluation.lighting.score}</p>
+          <p><strong>Score:</strong> {evaluation.lighting.score}</p>ҺЪ
         </div>
         <div className="grid gap-4">
           <h3 className="text-xl font-semibold">Exposure</h3>

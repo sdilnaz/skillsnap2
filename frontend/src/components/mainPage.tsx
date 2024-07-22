@@ -3,18 +3,18 @@ import { Button } from "@/components/ui/button";
 
 export default function PreviewMainPage() {
   return (
-    <div className="flex items-center justify-center ">
-  <section className="w-1/2 py-12">
-    <div className="rounded-lg border bg-transparent backdrop-blur-sm p-6 shadow-md transition-all hover:shadow-xl md:p-8">
+    <div className="flex items-center  ">
+  <section className="w-1/3 py-2">
+    <div className="bg-transparent">
       <div className="flex flex-col items-start gap-4">
-        <h2 className="text-2xl font-bold tracking-tight">Персонализируй свои фотографии</h2>
-        <p className="text-muted-foreground">
+        
+        <p className="text-white">
           Совершенствуй свои навыки в фотографии и повышай качество своей работы благодаря детальной обратной связи. Загрузи свои фотографии для получения персональных рекомендаций.
         </p>
         <div className="mt-auto">
           <Link
             href="#"
-            className="block px-6 py-1 mt-4 transition ease-in duration-200 uppercase rounded-full hover:bg-orange-600 hover:border-orange-600 hover:text-white border-2 border-gray-900 focus:outline-none"
+            className="block px-6 py-1 mt-4 transition ease-in duration-200 uppercase text-white rounded-full hover:bg-orange-600 hover:border-orange-600 hover:text-white border-2 border-white focus:outline-none"
             prefetch={false}
           >
             Получить фидбэк

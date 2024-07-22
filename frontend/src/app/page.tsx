@@ -20,9 +20,10 @@ const Home: React.FC = () => {
       <Header />
       {/* <FeatureSection />
       <PhotoSection /> */}
-      <PreviewMainPage/>
+      {/* <PreviewMainPage/> */}
      
       <ImageUpload />
+      
       <TutorCard/>
       {/* <Footer /> */}
     </div>

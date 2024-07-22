@@ -22,4 +22,26 @@ gptRouter.post('/evaluate', async (req: Request, res: Response) => {
     }
 });
 
+
+gptRouter.post('/generate-lesson', async (req: Request, res: Response) => {
+    const { title, userId } = req.body;
+
+    try {
+        if (!title) {
+            return res.status(400).json({ error: 'Title is required' });
+        }
+        if (!userId) {
+            return res.status(400).json({ error: 'userId is required' });
+        }
+
+        const generatedLesson = await gptService.generateLesson(title, userId);
+        console.log('Generated photography lesson:', generatedLesson);
+        
+        res.status(200).json(generatedLesson);
+    } catch (error) {
+        console.error('Error generating photography lesson:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 export default gptRouter;

@@ -1,14 +1,14 @@
+// pages/generatedLesson/[lessonId]/page.tsx
 'use client'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel"
-
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from '@/components/ui/carousel';
 import ImageUpload from '@/components/imageUpload';
 
-interface Example {
-  description: string;
-  imageUrl: string;
-}
+// interface Example {
+//   description: string;
+//   imageUrl: string;
+// }
 
 interface Task {
   taskNumber: number;
@@ -16,52 +16,84 @@ interface Task {
   maxPhotos: number;
 }
 
-interface Lesson {
+interface GeneratedLesson {
   _id: string;
   lessonNumber: number;
   title: string;
   content: string;
-  examples: Example[];
+  // examples: Example[];
   tasks: Task[];
 }
 
-interface LessonPageProps {
+interface GeneratedLessonPageProps {
   params: {
-    lessonId: string,
-    levelId: string, 
-    sublevelId: string
-  }
+    lessonId: string;
+  };
 }
 
-interface Sublevel {
-  _id: string;
-  title: string;
-}
+const parseResponseText = (text: string) => {
+  const parts = text.split('\n');
 
-interface Level {
-  _id: string;
-  level: string;
-}
+  return parts.map((part, index) => {
+    const trimmedPart = part.trim();
+  
+    // Handle empty strings
+    if (trimmedPart === '') {
+      return <br key={index} />;
+    } else {
+      const boldSplit = part.split('###');
+      const elements = [];
+  
+      for (let i = 0; i < boldSplit.length; i++) {
+        if (i % 2 === 1) {
+          elements.push(
+            <strong key={index + '-' + i} className="font-bold">
+              {boldSplit[i]}
+            </strong>
+          );
+        } else {
+          const boldWithinText = boldSplit[i].split('**');
+  
+          for (let j = 0; j < boldWithinText.length; j++) {
+            if (j % 2 === 1) {
+              elements.push(
+                <strong key={index + '-' + i + '-' + j} className="font-bold">
+                  {boldWithinText[j]}
+                </strong>
+              );
+            } else {
+              elements.push(boldWithinText[j]);
+            }
+          }
+        }
+      }
+  
+      return (
+        <p key={index} className="mb-2">
+          {elements}
+        </p>
+      );
+    }
+  });
+};
 
-const LessonPage = ({ params }: LessonPageProps) => {
-
-  console.log(params)
-
-  const [lesson, setLesson] = useState<Lesson | null>(null);
+const GeneratedLessonPage = ({ params }: GeneratedLessonPageProps) => {
+  const [lesson, setLesson] = useState<GeneratedLesson | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchLesson = async () => {
       try {
-        const response = await axios.get<Lesson>(`http://localhost:5000/api/levels/${params.levelId}/sublevels/${params.sublevelId}/lessons/${params.lessonId}`);
+        const response = await axios.get<GeneratedLesson>(`http://localhost:5000/api/generatedLessons/${params.lessonId}`);
         setLesson(response.data);
       } catch (err: any) {
         setError('Failed to fetch lesson');
         console.error(err);
       }
     };
+
     fetchLesson();
-  }, []);
+  }, [params.lessonId]);
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -77,10 +109,10 @@ const LessonPage = ({ params }: LessonPageProps) => {
         <article className="prose prose-gray mx-auto dark:prose-invert">
           <div className="space-y-6 not-prose">
             <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl">{lesson.title}</h1>
-            <p className="text-lg text-muted-foreground">Начинающий</p>
-            <p>{lesson.content}</p>
+            {/* <p>{lesson.content}</p> */}
+            <p>{parseResponseText(lesson.content)}</p>
           </div>
-          <Carousel className="w-full max-w-xs mt-8 ">
+          {/* <Carousel className="w-full max-w-xs mt-8">
             <CarouselContent>
               {lesson.examples.map((example, index) => (
                 <CarouselItem key={index} className="flex flex-col items-center">
@@ -95,7 +127,7 @@ const LessonPage = ({ params }: LessonPageProps) => {
             </CarouselContent>
             <CarouselPrevious />
             <CarouselNext />
-          </Carousel>
+          </Carousel> */}
 
           <div className="mt-8 space-y-4">
             <h3 className="text-xl font-bold">Tasks:</h3>
@@ -115,4 +147,4 @@ const LessonPage = ({ params }: LessonPageProps) => {
   );
 };
 
-export default LessonPage;
+export default GeneratedLessonPage;
