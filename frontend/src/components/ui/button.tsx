@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import { ButtonHTMLAttributes, forwardRef } from "react";
 
+// Define the variants for the button
 const buttonVariants = cva(
   "inline-flex items-center justify-center rounded-full text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background",
   {
@@ -26,12 +27,17 @@ const buttonVariants = cva(
   }
 );
 
+// Create a type for allowed button variants
+type ButtonVariant = "primary" | "secondary" | "accent" | "destructive" | "ghost" | "link";
+
 export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {}
+    VariantProps<typeof buttonVariants> {
+  variant?: ButtonVariant; // Ensure variant is of type ButtonVariant
+}
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, ...props }, ref) => {
+  ({ className, variant = "primary", size = "default", ...props }, ref) => {
     return (
       <button
         className={cn(buttonVariants({ variant, size, className }))}
