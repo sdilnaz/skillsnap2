@@ -55,7 +55,7 @@ export function ResponseCard({ evaluation }: ResponseCardProps) {
           <h3 className="text-xl font-semibold">Lighting</h3>
           <p><strong>Feedback:</strong> {evaluation.lighting.feedback}</p>
           <p><strong>Suggestions for Improvement:</strong> {evaluation.lighting.suggestions_for_improvement}</p>
-          <p><strong>Score:</strong> {evaluation.lighting.score}</p>ҺЪ
+          <p><strong>Score:</strong> {evaluation.lighting.score}</p>
         </div>
         <div className="grid gap-4">
           <h3 className="text-xl font-semibold">Exposure</h3>
