@@ -4,7 +4,7 @@ import React from "react";
 export default function Page() {
   return (
     <div className="flex justify-center py-24">
-      <SignIn/>
+      <SignIn path="/sign-in"/>
     </div>
   );
 }

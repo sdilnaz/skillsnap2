@@ -22,7 +22,7 @@ export const connect = async () => {
   cached.promise =
     cached.promise ||
     mongoose.connect(uri, {
-    //   dbName: "clerkauthv5",
+      dbName: "test",
        bufferCommands: false,
        connectTimeoutMS: 30000,
      }    
@@ -30,5 +30,6 @@ export const connect = async () => {
 
   cached.conn = await cached.promise;
 
+  console.log("MongoDB connected successfully");
   return cached.conn;
 };
