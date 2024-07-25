@@ -113,7 +113,7 @@ class GptService {
             in given topic through real-world applications and expert insights.
             Whole lesson except title and tasks, should be in 'content' part 
            return JSON format 
-            indicate bold text with ###, do not use **
+            indicate bold text with '###', do not use '**'
             indicate new linel with \n
 
             Change title (if needed) to make it more readable. If it is too long or does not represent topic shortly, replace it with name that suits the most. 

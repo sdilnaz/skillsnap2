@@ -8,9 +8,8 @@ import cors from 'cors';
 import levelRoutes from './routes/levelRoutes';
 import sublevelRoutes from './routes/sublevelRoutes';
 import lessonRoutes from './routes/lessonRoutes';
-import authRouter from './auth/auth-router';
-import authMiddleware from './user/auth/auth-middleware';
 import generatedLessonRoutes from './routes/generatedLessonRoutes';
+import cookieParser from "cookie-parser"
 
 dotenv.config();
 
@@ -19,6 +18,7 @@ const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(bodyParser.json());
+// app.use(cookieParser())
 // app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(verifyToken);
 
@@ -46,9 +46,6 @@ app.get('/', (req, res) => {
     res.send('Welcome to the API');
 });
 
-app.get('api/protected', authMiddleware, (req, res) => {
-    res.json({ message: 'This is a protected route', user: req.user });
-  });
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

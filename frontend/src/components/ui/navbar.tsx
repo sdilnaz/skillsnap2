@@ -1,9 +1,10 @@
 'use client'
-import { useState, useContext, createContext, ReactNode } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "./button";
 import { useRouter } from "next/navigation";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 interface NavLinkProps {
   href: string;
@@ -14,32 +15,15 @@ interface MenuIconProps {
   className?: string;
 }
 
-// Create an AuthContext to manage authentication state
-const AuthContext = createContext({ isLoggedIn: false, setIsLoggedIn: (loggedIn: boolean) => {} });
-
-export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  return (
-    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
-
 export default function Component() {
   const [isOpen, setIsOpen] = useState(false);
-  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
   const router = useRouter();
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    setIsLoggedIn(false);
-    router.push('/');
-  };
+
 
   return (
-    <header className="navbar sticky top-0 z-50 flex h-16 w-full items-center justify-between px-4 md:px-6 bg-white ">
-      <Link href="#" className="flex items-center gap-2" prefetch={false}>
+    <header className="navbar sticky top-0 z-50 flex h-16 w-full items-center justify-between px-4 md:px-6 bg-white">
+      <Link href="/" className="flex items-center gap-2" prefetch={false}>
         <Image 
           src="/images/logo.png" 
           alt="SkillSnap Logo" 
@@ -53,30 +37,22 @@ export default function Component() {
       <nav className="flex items-center space-x-4">
         <div className="hidden md:flex space-x-4">
           <NavLink href="#" text="Оценить фото" />
-          <NavLink href="#" text="Курс" />
+          <NavLink href="/roadmap" text="Курс" />
           <NavLink href="#" text="Галлерея" />
           <NavLink href="#" text="О Нас" />
-          {isLoggedIn ? (
-            <>
-              <Link href="/profile" prefetch={false}>
-                <Image 
-                  src="/images/user-icon.png" // Add user icon image path
-                  alt="User Icon"
-                  width={30}
-                  height={30}
-                  className="cursor-pointer"
-                />
-              </Link>
-              <button
-                onClick={handleLogout}
-                className="inline-flex h-9 w-max items-center justify-center rounded-full border border-foreground bg-transparent px-4 py-2 text-sm md:text-base font-medium text-foreground transition-colors hover:bg-accent hover:text-black focus:bg-accent focus:text-black focus:outline-none"
-              >
-                Выход
+          <SignedIn>
+            <NavLink href="/profile" text="Профиль">
+              
+            </NavLink>
+            <UserButton />
+          </SignedIn>
+          <SignedOut>
+            <SignInButton mode="modal">
+              <button className="inline-flex h-9 w-max items-center justify-center rounded-full border border-foreground bg-transparent px-4 py-2 text-sm md:text-base font-medium text-foreground transition-colors hover:bg-accent hover:text-black focus:bg-accent focus:text-black focus:outline-none">
+                Вход
               </button>
-            </>
-          ) : (
-            <NavLink href="/login" text="Вход" />
-          )}
+            </SignInButton>
+          </SignedOut>
         </div>
         <Button variant="primary" size="icon" className="ml-auto md:hidden" onClick={() => setIsOpen(!isOpen)}>
           <MenuIcon className="h-6 w-6 bg-transparent" />
@@ -90,27 +66,16 @@ export default function Component() {
             <NavLink href="#" text="Курс" />
             <NavLink href="#" text="Галлерея" />
             <NavLink href="#" text="О Нас" />
-            {isLoggedIn ? (
-              <>
-                <Link href="/profile" prefetch={false}>
-                  <Image 
-                    src="/images/user-icon.png" // Add user icon image path
-                    alt="User Icon"
-                    width={30}
-                    height={30}
-                    className="cursor-pointer"
-                  />
-                </Link>
-                <button
-                  onClick={handleLogout}
-                  className="inline-flex h-9 w-max items-center justify-center rounded-full border border-foreground bg-transparent px-4 py-2 text-sm md:text-base font-medium text-foreground transition-colors hover:bg-accent hover:text-black focus:bg-accent focus:text-black focus:outline-none"
-                >
-                  Выход
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+            <SignedOut>
+              <SignInButton mode="modal">
+                <button className="inline-flex h-9 w-max items-center justify-center rounded-full border border-foreground bg-transparent px-4 py-2 text-sm md:text-base font-medium text-foreground transition-colors hover:bg-accent hover:text-black focus:bg-accent focus:text-black focus:outline-none">
+                  Вход
                 </button>
-              </>
-            ) : (
-              <NavLink href="/login" text="Вход" />
-            )}
+              </SignInButton>
+            </SignedOut>
           </nav>
         </div>
       )}
