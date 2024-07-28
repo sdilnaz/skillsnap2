@@ -9,7 +9,21 @@ const UserSchema = new Schema({
   email: {
     type: String,
     required: true,
-  }
+  },
+  username: {
+    type: String,
+    required: true,
+  },
+  photo: {
+    type: String,
+    
+  },
+  firstName: {
+    type: String,
+  },
+  lastName: {
+    type: String,
+  },
 });
 
 const User = models?.User || model("User", UserSchema);

@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "./button";
 import { useRouter } from "next/navigation";
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignInButton, UserButton, useAuth } from "@clerk/nextjs";
 
 interface NavLinkProps {
   href: string;
@@ -19,6 +19,9 @@ export default function Component() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
+
+const {userId} = useAuth()
+console.log(userId)
 
 
   return (

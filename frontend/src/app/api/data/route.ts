@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   const { userId } = auth();
+  console.log(userId)
   const user = await currentUser();
 
   if (!userId) {
