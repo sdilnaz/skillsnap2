@@ -1,9 +1,11 @@
-'use client'
+'use client';
 import { useEffect, useState } from 'react';
+import { useAuth } from '@clerk/nextjs';
 import axios from 'axios';
-import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel"
-
+import Image from 'next/image';
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 import ImageUpload from '@/components/imageUpload';
+import { ResponseCard } from '@/components/response-card';
 
 interface Example {
   description: string;
@@ -27,41 +29,85 @@ interface Lesson {
 
 interface LessonPageProps {
   params: {
-    lessonId: string,
-    levelId: string, 
-    sublevelId: string
-  }
+    lessonId: string;
+    levelId: string;
+    sublevelId: string;
+  };
 }
 
-interface Sublevel {
-  _id: string;
-  title: string;
+interface UploadedImage {
+  url: string;
+  evaluation: any;
 }
 
-interface Level {
-  _id: string;
-  level: string;
+interface UserLesson {
+  lessonId: string;
+  images: UploadedImage[];
+}
+
+interface User {
+  lessons: UserLesson[];
 }
 
 const LessonPage = ({ params }: LessonPageProps) => {
-
-  console.log(params)
-
+  const { userId } = useAuth();
   const [lesson, setLesson] = useState<Lesson | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [deleted, setDeleted] = useState<boolean>(false); // State to manage deletion feedback
 
   useEffect(() => {
-    const fetchLesson = async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get<Lesson>(`http://localhost:5000/api/levels/${params.levelId}/sublevels/${params.sublevelId}/lessons/${params.lessonId}`);
-        setLesson(response.data);
+        const lessonResponse = await axios.get<Lesson>(`http://localhost:5000/api/levels/${params.levelId}/sublevels/${params.sublevelId}/lessons/${params.lessonId}`);
+        setLesson(lessonResponse.data);
+
+        if (userId) {
+          const userResponse = await axios.get<User>(`http://localhost:5000/api/users/${userId}`);
+          setUser(userResponse.data);
+        }
       } catch (err: any) {
-        setError('Failed to fetch lesson');
+        setError('Failed to fetch data');
         console.error(err);
       }
     };
-    fetchLesson();
-  }, []);
+    fetchData();
+  }, [params, userId]);
+
+  const handleDeleteImage = async () => {
+    if (!userId || !lesson?._id || !user?.lessons.find(l => l.lessonId === params.lessonId)?.images[0]) return;
+
+    try {
+      await axios.delete('http://localhost:5000/api/images', {
+        data: {
+          userId,
+          imageUrl: user.lessons.find(l => l.lessonId === params.lessonId)?.images[0].url,
+          lessonId: params.lessonId
+        }
+      });
+
+      // Update state after deletion
+      setUser(prevUser => {
+        if (!prevUser) return prevUser;
+        return {
+          ...prevUser,
+          lessons: prevUser.lessons.map(l => {
+            if (l.lessonId === params.lessonId) {
+              return {
+                ...l,
+                images: l.images.filter(img => img.url !== user.lessons.find(l => l.lessonId === params.lessonId)?.images[0].url)
+              };
+            }
+            return l;
+          })
+        };
+      });
+      setDeleted(true);
+    } catch (err: any) {
+      setError('Failed to delete image');
+      console.error(err);
+    }
+  };
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -70,6 +116,9 @@ const LessonPage = ({ params }: LessonPageProps) => {
   if (!lesson) {
     return <div>Loading...</div>;
   }
+
+  const userLesson = user?.lessons.find(lesson => lesson.lessonId === params.lessonId);
+  const uploadedImage = userLesson?.images[0];
 
   return (
     <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
@@ -80,22 +129,26 @@ const LessonPage = ({ params }: LessonPageProps) => {
             <p className="text-lg text-muted-foreground">Начинающий</p>
             <p>{lesson.content}</p>
           </div>
-          <Carousel className="w-full max-w-xs mt-8 ">
-            <CarouselContent>
-              {lesson.examples.map((example, index) => (
-                <CarouselItem key={index} className="flex flex-col items-center">
-                  <img
-                    src={example.imageUrl}
-                    alt={`Example ${index + 1}`}
-                    className="w-full h-auto object-cover rounded-md"
-                  />
-                  <p className="mt-2 text-center">{example.description}</p>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
+          
+          {/* Conditional rendering for Carousel */}
+          {lesson.examples.length > 0 && (
+            <Carousel className="w-full max-w-xs mt-8">
+              <CarouselContent>
+                {lesson.examples.map((example, index) => (
+                  <CarouselItem key={index} className="flex flex-col items-center">
+                    <img
+                      src={example.imageUrl}
+                      alt={`Example ${index + 1}`}
+                      className="w-full h-auto object-cover rounded-md"
+                    />
+                    <p className="mt-2 text-center">{example.description}</p>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+          )}
 
           <div className="mt-8 space-y-4">
             <h3 className="text-xl font-bold">Tasks:</h3>
@@ -107,7 +160,27 @@ const LessonPage = ({ params }: LessonPageProps) => {
                 </li>
               ))}
             </ul>
-            <ImageUpload />
+
+            {uploadedImage ? (
+              <div>
+                <div className="mt-8">
+                  <Image src={uploadedImage.url} alt="Uploaded Image" width={300} height={200} className="rounded-lg" />
+                </div>
+                <div className="mt-8">
+                  <ResponseCard evaluation={uploadedImage.evaluation} />
+                </div>
+                <button
+                  onClick={handleDeleteImage}
+                  className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
+                >
+                  Delete Image
+                </button>
+                {deleted && <p className="text-green-500 mt-2">Image deleted successfully</p>}
+              </div>
+            ) : (
+              <ImageUpload lessonId={lesson._id} />
+            )}
+            {/* <ImageUpload lessonId={lesson._id} /> */}
           </div>
         </article>
       </div>

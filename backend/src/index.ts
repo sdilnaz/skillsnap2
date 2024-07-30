@@ -10,6 +10,7 @@ import sublevelRoutes from './routes/sublevelRoutes';
 import lessonRoutes from './routes/lessonRoutes';
 import generatedLessonRoutes from './routes/generatedLessonRoutes';
 import cookieParser from "cookie-parser"
+import userRoutes from './routes/userRoutes';
 
 dotenv.config();
 
@@ -35,6 +36,7 @@ app.use('/api/levels', levelRoutes);
 app.use('/api/levels/:levelId/sublevels', sublevelRoutes);
 app.use('/api/levels/:levelId/sublevels/:sublevelId/lessons', lessonRoutes);
 app.use('/api/generatedLessons', generatedLessonRoutes);
+app.use('/api/users', userRoutes)
 
 // app.use('/api/auth', authRouter);
 // app.use('/api/levels', authMiddleware, levelRoutes);

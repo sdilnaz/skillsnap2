@@ -6,6 +6,7 @@ import { Button } from "./button";
 import { useRouter } from "next/navigation";
 import { SignedIn, SignedOut, SignInButton, UserButton, useAuth } from "@clerk/nextjs";
 
+
 interface NavLinkProps {
   href: string;
   text: string;
@@ -20,8 +21,7 @@ export default function Component() {
   const router = useRouter();
 
 
-const {userId} = useAuth()
-console.log(userId)
+  const {userId} = useAuth()
 
 
   return (
@@ -66,7 +66,7 @@ console.log(userId)
         <div className="absolute top-16 left-0 w-full bg-custom-bg bg-opacity-70 px-4 py-4 shadow-lg md:hidden">
           <nav className="flex flex-col items-center gap-2">
             <NavLink href="#" text="Оценить фото" />
-            <NavLink href="#" text="Курс" />
+            <NavLink href="/roadmap" text="Курс" />
             <NavLink href="#" text="Галлерея" />
             <NavLink href="#" text="О Нас" />
             <SignedIn>

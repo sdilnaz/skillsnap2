@@ -1,3 +1,4 @@
+//models/lessonsModel.ts
 import mongoose, { Schema, Document } from 'mongoose';
 
 interface IExample extends Document {

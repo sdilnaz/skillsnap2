@@ -1,6 +1,7 @@
 // backend/src/gpt/gpt-router.ts
 import { Router, Request, Response } from 'express';
 import GptService from './gpt-service';
+import { User } from '../models/userModel';
 
 const gptRouter = Router();
 const gptService = new GptService();
@@ -21,6 +22,8 @@ gptRouter.post('/evaluate', async (req: Request, res: Response) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+
 
 
 gptRouter.post('/generate-lesson', async (req: Request, res: Response) => {
