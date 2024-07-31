@@ -52,7 +52,7 @@ const RoadmapPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get<Level[]>(`${backendUrl}/api/levels`);
+        const response = await axios.get<Level[]>(`https://skillsnapback-production.up.railway.app/api/levels`);
         setLevels(response.data);
         console.log(levels)
       } catch (err: any) {
@@ -63,7 +63,7 @@ const RoadmapPage = () => {
 
     const fetchGeneratedLessons = async () => {
       try {
-        const response = await axios.get<Lesson[]>(`${backendUrl}/api/generatedLessons/user/${userId}`);
+        const response = await axios.get<Lesson[]>(`https://skillsnapback-production.up.railway.app/api/generatedLessons/user/${userId}`);
         setGeneratedLessons(response.data);
       } catch (err: any) {
         setError('Failed to fetch generated lessons');
