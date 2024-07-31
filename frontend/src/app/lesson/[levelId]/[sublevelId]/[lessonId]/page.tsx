@@ -48,22 +48,21 @@ interface UserLesson {
 interface User {
   lessons: UserLesson[];
 }
-
 const LessonPage = ({ params }: LessonPageProps) => {
   const { userId } = useAuth();
   const [lesson, setLesson] = useState<Lesson | null>(null);
   const [user, setUser] = useState<User | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [deleted, setDeleted] = useState<boolean>(false); // State to manage deletion feedback
-
+  const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const lessonResponse = await axios.get<Lesson>(`http://localhost:5000/api/levels/${params.levelId}/sublevels/${params.sublevelId}/lessons/${params.lessonId}`);
+        const lessonResponse = await axios.get<Lesson>(`${backendUrl}/api/levels/${params.levelId}/sublevels/${params.sublevelId}/lessons/${params.lessonId}`);
         setLesson(lessonResponse.data);
 
         if (userId) {
-          const userResponse = await axios.get<User>(`http://localhost:5000/api/users/${userId}`);
+          const userResponse = await axios.get<User>(`${backendUrl}/api/users/${userId}`);
           setUser(userResponse.data);
         }
       } catch (err: any) {
@@ -78,7 +77,7 @@ const LessonPage = ({ params }: LessonPageProps) => {
     if (!userId || !lesson?._id || !user?.lessons.find(l => l.lessonId === params.lessonId)?.images[0]) return;
 
     try {
-      await axios.delete('http://localhost:5000/api/images', {
+      await axios.delete(`${backendUrl}/api/images`, {
         data: {
           userId,
           imageUrl: user.lessons.find(l => l.lessonId === params.lessonId)?.images[0].url,

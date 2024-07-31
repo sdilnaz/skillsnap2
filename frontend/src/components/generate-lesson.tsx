@@ -13,7 +13,7 @@ interface GenerateLessonProps {
 export function GenerateLesson({ onClose }: GenerateLessonProps) {
   const [topic, setTopic] = useState('');
   const [error, setError] = useState<string | null>(null);
-
+  const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!topic) {
@@ -23,7 +23,7 @@ export function GenerateLesson({ onClose }: GenerateLessonProps) {
     const user_id_placeholder = 1;
 
     try {
-      const response = await fetch('http://localhost:5000/api/gpt/generate-lesson', {
+      const response = await fetch(`${backendUrl}/api/gpt/generate-lesson`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

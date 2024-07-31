@@ -16,6 +16,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ lessonId }) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
     const { userId } = useAuth(); 
+    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
     
     const handleUploadComplete = async (res: any) => {
         const url = res[0].url;
@@ -24,7 +25,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ lessonId }) => {
 
         try {
             // Save image URL and get evaluation from the backend
-            const saveResponse = await axios.post('http://localhost:5000/api/images', {
+            const saveResponse = await axios.post(`${backendUrl}/api/images`, {
                 imageUrl: url,
                 userId,
                 lessonId

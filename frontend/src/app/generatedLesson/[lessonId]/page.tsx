@@ -80,11 +80,12 @@ const parseResponseText = (text: string) => {
 const GeneratedLessonPage = ({ params }: GeneratedLessonPageProps) => {
   const [lesson, setLesson] = useState<GeneratedLesson | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
   useEffect(() => {
     const fetchLesson = async () => {
       try {
-        const response = await axios.get<GeneratedLesson>(`http://localhost:5000/api/generatedLessons/${params.lessonId}`);
+        const response = await axios.get<GeneratedLesson>(`${backendUrl}/api/generatedLessons/${params.lessonId}`);
         setLesson(response.data);
       } catch (err: any) {
         setError('Failed to fetch lesson');

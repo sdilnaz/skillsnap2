@@ -48,11 +48,11 @@ const RoadmapPage = () => {
   const [error, setError] = useState<string | null>(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const { userId } = useAuth();
-
+  const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get<Level[]>('http://localhost:5000/api/levels');
+        const response = await axios.get<Level[]>(`${backendUrl}/api/levels`);
         setLevels(response.data);
         console.log(levels)
       } catch (err: any) {
@@ -63,7 +63,7 @@ const RoadmapPage = () => {
 
     const fetchGeneratedLessons = async () => {
       try {
-        const response = await axios.get<Lesson[]>(`http://localhost:5000/api/generatedLessons/user/${userId}`);
+        const response = await axios.get<Lesson[]>(`${backendUrl}/api/generatedLessons/user/${userId}`);
         setGeneratedLessons(response.data);
       } catch (err: any) {
         setError('Failed to fetch generated lessons');
@@ -74,7 +74,7 @@ const RoadmapPage = () => {
   
     const initializeUser = async () => {
       try {
-        await axios.post('http://localhost:5000/api/users', { userId });
+        await axios.post(`${backendUrl}/api/users`, { userId });
       } catch (err: any) {
         console.error('Failed to initialize user:', err);
       }
