@@ -49,10 +49,11 @@ const RoadmapPage = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const { userId } = useAuth();
   const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+  console.log("backend url = ", backendUrl)
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get<Level[]>(`https://skillsnapback-production.up.railway.app/api/levels`);
+        const response = await axios.get<Level[]>(`${backendUrl}/api/levels`);
         setLevels(response.data);
         console.log(levels)
       } catch (err: any) {
@@ -63,7 +64,7 @@ const RoadmapPage = () => {
 
     const fetchGeneratedLessons = async () => {
       try {
-        const response = await axios.get<Lesson[]>(`https://skillsnapback-production.up.railway.app/api/generatedLessons/user/${userId}`);
+        const response = await axios.get<Lesson[]>(`${backendUrl}/api/generatedLessons/user/${userId}`);
         setGeneratedLessons(response.data);
       } catch (err: any) {
         setError('Failed to fetch generated lessons');
@@ -74,7 +75,7 @@ const RoadmapPage = () => {
   
     const initializeUser = async () => {
       try {
-        await axios.post(`https://skillsnapback-production.up.railway.app/api/users`, { userId });
+        await axios.post(`${backendUrl}/api/users`, { userId });
       } catch (err: any) {
         console.error('Failed to initialize user:', err);
       }
