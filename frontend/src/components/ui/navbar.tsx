@@ -54,7 +54,7 @@ export default function Component() {
       <nav className="flex items-center space-x-4">
         {window.innerWidth > 870 ? (
           <div className="hidden md:flex space-x-4">
-            <NavLink href="#" text="Оценить фото" />
+            <NavLink href="/"  text="Оценить фото" />
             <NavLink href="/roadmap" text="Курс" />
             <NavLink href="#" text="Галлерея" />
             <NavLink href="#" text="О Нас" />
@@ -80,7 +80,7 @@ export default function Component() {
       {isOpen && (
         <div className="absolute top-16 left-0 w-full bg-white bg-opacity-90 px-4 py-4 shadow-lg lg:hidden">
           <nav className="flex flex-col items-center gap-2">
-            <NavLink href="#" text="Оценить фото" onClick={closeMenu} className="w-[150px] h-[30px]" />
+            <NavLink href="/" text="Оценить фото" onClick={closeMenu} className="w-[150px] h-[30px]" />
             <NavLink href="/roadmap" text="Курс" onClick={closeMenu} className="w-[150px] h-[30px]" />
             <NavLink href="#" text="Галлерея" onClick={closeMenu} className="w-[150px] h-[30px]" />
             <NavLink href="#" text="О Нас" onClick={closeMenu} className="w-[150px] h-[30px]" />
@@ -109,7 +109,7 @@ function NavLink({ href, text, onClick, className }: NavLinkProps & { onClick?: 
   return (
     <Link
       href={href}
-      className={`inline-flex items-center justify-center rounded-full border border-foreground bg-transparent px-2 text-sm md:text-base font-medium text-foreground transition-colors hover:bg-orange-600 hover:border-orange-600 hover:text-white focus:bg-accent focus:text-black focus:outline-none disabled:pointer-events-none disabled:opacity-50 ${className}`}
+      className={`inline-flex py-1 items-center justify-center rounded-full border border-foreground bg-transparent px-2 text-sm md:text-base font-medium text-foreground transition-colors hover:bg-orange-600 hover:border-orange-600 hover:text-white focus:bg-accent focus:text-black focus:outline-none disabled:pointer-events-none disabled:opacity-50 ${className}`}
       prefetch={false}
       onClick={onClick}
     >
