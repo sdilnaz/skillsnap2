@@ -14,6 +14,7 @@ const buttonVariants = cva(
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         ghost: "hover:text-accent-foreground hover:bg-orange-500 hover:bg-opacity-10",
         link: "underline-offset-4 hover:underline text-primary",
+        noBorder: "bg-transparent border-none hover:border-none", // New variant
       },
       size: {
         default: "h-9 px-4",
@@ -28,7 +29,7 @@ const buttonVariants = cva(
 );
 
 // Create a type for allowed button variants
-type ButtonVariant = "primary" | "secondary" | "accent" | "destructive" | "ghost" | "link";
+type ButtonVariant = "primary" | "secondary" | "accent" | "destructive" | "ghost" | "link" | "noBorder";
 
 export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
