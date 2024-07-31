@@ -8,6 +8,7 @@ import {
   
 } from '@clerk/nextjs'
 import Navbar from "@/components/ui/navbar";
+import { Analytics } from "@vercel/analytics/react"
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -36,6 +37,7 @@ export default function RootLayout({
           <ClerkLoaded>
             <Navbar />
             {children}
+            <Analytics />
           </ClerkLoaded>
           </body>
        
