@@ -74,7 +74,7 @@ const RoadmapPage = () => {
   
     const initializeUser = async () => {
       try {
-        await axios.post(`${backendUrl}/api/users`, { userId });
+        await axios.post(`https://skillsnapback-production.up.railway.app/api/users`, { userId });
       } catch (err: any) {
         console.error('Failed to initialize user:', err);
       }
