@@ -38,11 +38,6 @@ app.use('/api/levels/:levelId/sublevels/:sublevelId/lessons', lessonRoutes);
 app.use('/api/generatedLessons', generatedLessonRoutes);
 app.use('/api/users', userRoutes)
 
-// app.use('/api/auth', authRouter);
-// app.use('/api/levels', authMiddleware, levelRoutes);
-// app.use('/api/levels/:levelId/sublevels', authMiddleware, sublevelRoutes);
-// app.use('/api/levels/:levelId/sublevels/:sublevelId/lessons', authMiddleware, lessonRoutes);
-
 
 app.get('/', (req, res) => {
     res.send('Welcome to the API');

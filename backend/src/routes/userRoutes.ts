@@ -23,14 +23,12 @@ router.get('/:userId', async (req, res) => {
   const { userId } = req.params;
 
   try {
-    // Find user by clerkId (userId)
+    
     const user = await User.findOne({ clerkId: userId });
-
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    // Return user data
     res.status(200).json(user);
   } catch (error) {
     console.error(error);
