@@ -116,8 +116,58 @@ const LessonPage = ({ params }: LessonPageProps) => {
     return <div>Loading...</div>;
   }
 
+
+  
   const userLesson = user?.lessons.find(lesson => lesson.lessonId === params.lessonId);
   const uploadedImage = userLesson?.images[0];
+
+
+
+  const parseResponseText = (text: string) => {
+    const parts = text.split('\n');
+  
+    return parts.map((part, index) => {
+      const trimmedPart = part.trim();
+    
+      // Handle empty strings
+      if (trimmedPart === '') {
+        return <br key={index} />;
+      } else {
+        const boldSplit = part.split('###');
+        const elements = [];
+    
+        for (let i = 0; i < boldSplit.length; i++) {
+          if (i % 2 === 1) {
+            elements.push(
+              <strong key={index + '-' + i} className="font-bold">
+                {boldSplit[i]}
+              </strong>
+            );
+          } else {
+            const boldWithinText = boldSplit[i].split('**');
+    
+            for (let j = 0; j < boldWithinText.length; j++) {
+              if (j % 2 === 1) {
+                elements.push(
+                  <strong key={index + '-' + i + '-' + j} className="font-bold">
+                    {boldWithinText[j]}
+                  </strong>
+                );
+              } else {
+                elements.push(boldWithinText[j]);
+              }
+            }
+          }
+        }
+    
+        return (
+          <p key={index} className="mb-2">
+            {elements}
+          </p>
+        );
+      }
+    });
+  };
 
   return (
     <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
@@ -126,7 +176,7 @@ const LessonPage = ({ params }: LessonPageProps) => {
           <div className="space-y-6 not-prose">
             <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl">{lesson.title}</h1>
             <p className="text-lg text-muted-foreground">Начинающий</p>
-            <p>{lesson.content}</p>
+            <p>{parseResponseText(lesson.content)}</p>
           </div>
           
           {/* Conditional rendering for Carousel */}
