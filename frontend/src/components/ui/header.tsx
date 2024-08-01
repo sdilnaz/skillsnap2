@@ -17,7 +17,7 @@ const Header: React.FC = () => {
       <div className="absolute inset-0 bg-black/50 z-10" />
     
       <div className="absolute top-20 left-8 space-y-2 z-20">
-        <h1 className="text-4xl font-bold tracking-tighter text-white sm:text-4xl md:text-5xl lg:text-6xl">
+        <h1 className="text-2xl sm:text-center md:text-left font-bold tracking-tighter text-white sm:text-4xl md:text-5xl lg:text-6xl ">
           Мастерская фотографии
         </h1>
         <PreviewMainPage />
@@ -40,7 +40,7 @@ const Header: React.FC = () => {
       
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 w-full px-4 z-20 md:hidden">
         <div className="bg-black bg-opacity-50 p-4 rounded-lg shadow-lg">
-          <p className="text-xl text-white text-center">
+          <p className="text-md  lg:text-xl text-white text-center">
             Персонализированные уроки в зависимости от вашего уровня и скиллов в фотографии. Выполняй задания после каждого урока и получай обратную связь за считанные секунды.
           </p>
           <div className="mt-4 text-center">

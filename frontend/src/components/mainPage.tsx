@@ -7,7 +7,7 @@ export default function PreviewMainPage() {
       <section className="w-1/3 py-2">
         <div className="bg-transparent">
           <div className="flex-col items-start gap-4 hidden lg:flex">
-            <p className="text-white">
+            <p className="text-white text-md  lg:text-xl">
               Совершенствуй свои навыки в фотографии и повышай качество своей работы благодаря детальной обратной связи. Загрузи свои фотографии для получения персональных рекомендаций.
             </p>
           </div>
