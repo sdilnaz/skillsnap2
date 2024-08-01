@@ -4,7 +4,7 @@ import PreviewMainPage from '../mainPage';
 import Link from "next/link";
 const Header: React.FC = () => {
   return (
-    <header className="relative min-h-screen w-full overflow-hidden">
+    <header className="relative h-screen w-full overflow-hidden">
       <div
         className="absolute inset-0 bg-cover bg-center bg-fixed"
         style={{
