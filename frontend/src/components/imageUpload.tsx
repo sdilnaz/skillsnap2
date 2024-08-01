@@ -323,16 +323,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ lessonId }) => {
                         onUploadError={(error: Error) => {
                             setError(`Upload error: ${error.message}`);
                         }}
-                        className=" backdrop-blur-lg shadow-l
-                         ut-label:text-orange-600 ut-button:bg-transparent
-                          ut-button:text-gray-700 ut-button:border-2
-                           ut-button:border-gray-700 ut-button:rounded-full 
-                           ut-button:transition ut-button:duration-300
-                            hover:ut-button:bg-orange-500 hover:ut-button:text-gray-700
-                             ut-button:ut-readying:bg-orange-500/50 w-full 
-                             max-w-lg md:max-w-xl lg:max-w-3xl
-                             ut-button:ut-uploading:bg-orange-500/50
-                             ut-button:ut-uploading:color-orange-500/50"
+                        className="bg-transparent backdrop-blur-lg shadow-l ut-label:text-orange-600 ut-button:bg-transparent ut-button:text-gray-700 ut-button:border-2 ut-button:border-gray-700 ut-button:rounded-full ut-button:transition ut-button:duration-300 hover:ut-button:bg-orange-500 hover:ut-button:text-gray-700 ut-button:ut-readying:bg-orange-500/50 w-full max-w-lg md:max-w-xl lg:max-w-3xl"
                     />
                 )}
 
