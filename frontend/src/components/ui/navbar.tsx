@@ -90,8 +90,8 @@ export default function Component() {
             </SignedIn>
             <SignedOut>
               <SignInButton mode="modal">
-                <button 
-                  className="inline-flex h-9 w-max items-center justify-center rounded-full border border-foreground bg-transparent px-4 py-2 text-sm md:text-base font-medium text-foreground transition-colors hover:bg-accent hover:text-black focus:bg-accent focus:text-black focus:outline-none"
+              <button
+                  className="inline-flex w-[150px] h-[30px] items-center justify-center rounded-full border border-foreground bg-transparent px-4 py-2 text-sm md:text-base font-medium text-foreground transition-colors hover:bg-orange-600 hover:border-orange-600 hover:text-white focus:bg-accent focus:text-black focus:outline-none"
                   onClick={closeMenu}
                 >
                   Вход
