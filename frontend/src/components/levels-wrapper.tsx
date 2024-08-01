@@ -43,10 +43,10 @@ export default function LevelsWrapper({ levelId, sublevels }: LevelsWrapperProps
       {sublevels.map((sublevel, index) => (
         <div
           key={sublevel._id}
-          className={`min-h-[100px] rounded-md ${
+          className={`min-h-[100px]  rounded-md ${
             index % 2 === 0
-              ? 'bg-transparent w-full md:w-1/3 md:ml-[50%] h-[250px] mt-3'
-              : 'bg-transparent w-full h-[300px] md:w-1/3'
+              ? 'bg-transparent w-full md:w-1/3 lg:ml-[50%] h-[250px] mt-3 md:ml-[20%]'
+              : 'bg-transparent w-full h-[300px] md:w-1/3 md:ml-[50%] lg:ml-0'
           }`}
         >
           <h3 className="text-md font-semibold mb-2">{sublevel.title}</h3>

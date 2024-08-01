@@ -105,19 +105,15 @@ const RoadmapPage = () => {
     <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold mb-11 text-center pb-10">План уроков фотографии</h1>
         <div
-          className="w-full h-90"
-          style={{
-            backgroundImage: "url('/images/roadmap.png')", 
-            backgroundSize: 'contain', 
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat', 
-            height: '100vh'
-          }}
-        >
+            className="w-full h-90 lg:h-screen lg:bg-[url('/images/roadmap.png')] 
+            lg:bg-contain lg:bg-center lg:bg-no-repeat
+            md:w-screen md:bg-[url('/images/roadmap_vert.png')] 
+            md:bg-contain md:bg-center md:bg-no-repeat"
+         >
             <div className="grid grid-cols-7 gap-2 pl-11 ml-6 ">
               {levels.map((level) => (
-                <div key={level._id} className="col-span-6 md:col-span-2 lg:col-span-2 ">
-                  <h2 className="text-xl font-bold mb-4 pl-11 ml-10">{level.level}</h2>
+                <div key={level._id} className="col-span-6 md:col-span-7 lg:col-span-2 ">
+                  <h2 className="text-xl font-bold mb-4 pl-11 lg:ml-10">{level.level}</h2>
                   <div className="space-y-4 py-20">
                     <LevelsWrapper levelId={level._id} sublevels={level.sublevels} />
                   </div>
