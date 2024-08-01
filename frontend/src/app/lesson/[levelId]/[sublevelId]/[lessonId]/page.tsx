@@ -149,8 +149,10 @@ const LessonPage = ({ params }: LessonPageProps) => {
             </Carousel>
           )}
 
+          
           <div className="mt-8 space-y-4">
-            <h3 className="text-xl font-bold">Tasks:</h3>
+          <hr className="border-t border-gray-300 my-4"></hr>
+            <h3 className="text-xl font-bold">Задания:</h3>
             <ul className="list-disc list-inside">
               {lesson.tasks.map((task, index) => (
                 <li key={index}>
@@ -161,20 +163,30 @@ const LessonPage = ({ params }: LessonPageProps) => {
             </ul>
 
             {uploadedImage ? (
-              <div>
-                <div className="mt-8">
-                  <Image src={uploadedImage.url} alt="Uploaded Image" width={300} height={200} className="rounded-lg" />
-                </div>
-                <div className="mt-8">
-                  <ResponseCard evaluation={uploadedImage.evaluation} />
-                </div>
-                <button
+              <div className='pt-11'>
+                <h3 className='text-2xl font-semibold leading-none tracking-tight mb-11 text-center'>Анализ фотографии</h3>
+                <div className="lg:grid lg:grid-cols-2 lg:gap-8">
+                  <div className="mt-8 lg:mt-0 lg:col-span-1 ">
+                    <Image
+                      src={uploadedImage.url}
+                      alt="Uploaded Image"
+                      width={300}
+                      height={200}
+                      className="rounded-lg w-full max-w-md "
+                    />
+                  </div>
+                  <div className="mt-8 lg:mt-0 lg:col-span-1">
+                    <ResponseCard evaluation={uploadedImage.evaluation} />
+                    <button
                   onClick={handleDeleteImage}
-                  className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
+                  className="mt-4 border border-red-500 text-red-500 px-4 py-2 rounded-full transition-colors duration-300 hover:bg-red-500 hover:text-white"
                 >
                   Delete Image
                 </button>
-                {deleted && <p className="text-green-500 mt-2">Image deleted successfully</p>}
+                {deleted && <p className="text-green-500 mt-2">Фотография успешно удалена</p>}
+                  </div>
+                </div>
+               
               </div>
             ) : (
               <ImageUpload lessonId={lesson._id} />

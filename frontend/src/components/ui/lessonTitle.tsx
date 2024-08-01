@@ -24,8 +24,8 @@ interface LessonTitleProps {
       as={`/lesson/${levelId}/${sublevelId}/${lesson._id}`}
     >
       <div
-        className={`text-sm transition-all duration-200 hover:rounded-full hover:border-black hover:border hover:px-4 hover:py-2 hover:shadow-md inline-block  ${className} `}
-      >
+        className={`text-sm transition-all duration-200 hover:text-xs hover:rounded-full hover:border-black hover:border hover:px-4 hover:py-2 hover:shadow-md inline-block ${className}`}
+        >
         {lesson.title}
       </div>
     </Link>

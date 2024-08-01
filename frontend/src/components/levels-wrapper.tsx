@@ -68,4 +68,3 @@ export default function LevelsWrapper({ levelId, sublevels }: LevelsWrapperProps
     </main>
   );
 }
-

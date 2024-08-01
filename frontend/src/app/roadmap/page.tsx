@@ -103,7 +103,7 @@ const RoadmapPage = () => {
 
   return (
     <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold mb-8">Photography Lessons Roadmap</h1>
+        <h1 className="text-3xl font-bold mb-11 text-center pb-10">План уроков фотографии</h1>
         <div
           className="w-full h-90"
           style={{
@@ -117,7 +117,7 @@ const RoadmapPage = () => {
             <div className="grid grid-cols-7 gap-2 pl-11 ml-6 ">
               {levels.map((level) => (
                 <div key={level._id} className="col-span-6 md:col-span-2 lg:col-span-2 ">
-                  <h2 className="text-xl font-bold mb-4 ">{level.level}</h2>
+                  <h2 className="text-xl font-bold mb-4 pl-11 ml-10">{level.level}</h2>
                   <div className="space-y-4 py-20">
                     <LevelsWrapper levelId={level._id} sublevels={level.sublevels} />
                   </div>
@@ -127,7 +127,7 @@ const RoadmapPage = () => {
         </div>
       <div className="mt-8 md:col-span-2 lg:col-span-1">
         <div className="text-left">
-          <h2 className="text-xl font-bold mb-4">Generated Lessons</h2>
+          <h2 className="text-xl font-bold mb-4">Персональные уроки</h2>
         </div>
         <div className="space-y-2">
           {generatedLessons.map((lesson) => (
