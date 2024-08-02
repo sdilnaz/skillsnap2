@@ -16,7 +16,7 @@ const Header: React.FC = () => {
       <div className="absolute inset-0 bg-black/50 z-10" />
     
       <div className="absolute top-20 left-8 space-y-2 z-20">
-        <h1 className="text-4xl sm:text-center md:text-left font-bold tracking-tighter font-serif text-white sm:text-4xl md:text-5xl lg:text-6xl">
+        <h1 className="text-4xl sm:text-center md:text-left font-bold tracking-tighter  text-white sm:text-4xl md:text-5xl lg:text-6xl">
           Мастерская фотографии
         </h1>
         <PreviewMainPage />
