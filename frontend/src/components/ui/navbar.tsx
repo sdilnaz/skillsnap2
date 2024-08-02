@@ -82,10 +82,10 @@ export default function Component() {
           <nav className="flex flex-col items-center gap-2">
             <NavLink href="/" text="Оценить фото" onClick={closeMenu} className="w-[150px] h-[30px]" />
             <NavLink href="/roadmap" text="Курс" onClick={closeMenu} className="w-[150px] h-[30px]" />
-            <NavLink href="#" text="Галлерея" onClick={closeMenu} className="w-[150px] h-[30px]" />
-            <NavLink href="#" text="О Нас" onClick={closeMenu} className="w-[150px] h-[30px]" />
+            {/* <NavLink href="#" text="Галлерея" onClick={closeMenu} className="w-[150px] h-[30px]" /> */}
+            {/* <NavLink href="#" text="О Нас" onClick={closeMenu} className="w-[150px] h-[30px]" /> */}
             <SignedIn>
-              <NavLink href="/profile" text="Профиль" onClick={closeMenu} className="w-[150px] h-[30px]" />
+              {/* <NavLink href="/profile" text="Профиль" onClick={closeMenu} className="w-[150px] h-[30px]" /> */}
               <UserButton />
             </SignedIn>
             <SignedOut>
