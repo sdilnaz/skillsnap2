@@ -113,22 +113,7 @@ const GeneratedLessonPage = ({ params }: GeneratedLessonPageProps) => {
             {/* <p>{lesson.content}</p> */}
             <p>{parseResponseText(lesson.content)}</p>
           </div>
-          {/* <Carousel className="w-full max-w-xs mt-8">
-            <CarouselContent>
-              {lesson.examples.map((example, index) => (
-                <CarouselItem key={index} className="flex flex-col items-center">
-                  <img
-                    src={example.imageUrl}
-                    alt={`Example ${index + 1}`}
-                    className="w-full h-auto object-cover rounded-md"
-                  />
-                  <p className="mt-2 text-center">{example.description}</p>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel> */}
+         
 
           <div className="mt-8 space-y-4">
             <h3 className="text-xl font-bold">Tasks:</h3>

@@ -1,15 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import {
-  ClerkLoaded,
-  ClerkLoading,
-  ClerkProvider,
-  
-} from '@clerk/nextjs'
+import { ClerkLoaded, ClerkLoading, ClerkProvider } from "@clerk/nextjs";
 import Navbar from "@/components/ui/navbar";
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
 
+import { TailwindIndicator } from "@/components/tailwind-indicator";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,9 +22,8 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        
-          <body className={inter.className}>
-
+        <body className={inter.className}>
+          <TailwindIndicator />
           <ClerkLoading>
             <div className="flex items-center justify-center h-screen text-2xl">
               LOADING...
@@ -39,9 +34,8 @@ export default function RootLayout({
             {children}
             <Analytics />
           </ClerkLoaded>
-          </body>
-       
+        </body>
       </html>
-     </ClerkProvider>
+    </ClerkProvider>
   );
 }

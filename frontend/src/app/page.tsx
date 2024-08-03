@@ -14,6 +14,7 @@ const Home: React.FC = () => {
       <Head>
         <title>SkillSnap</title>
         <meta name="description" content="Enhance your photography skills" />
+        < link rel="icon" href="images/logo.png"/>
       </Head>
       <Header />
       {/* <FeatureSection />

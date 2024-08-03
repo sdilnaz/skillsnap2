@@ -123,51 +123,51 @@ const LessonPage = ({ params }: LessonPageProps) => {
 
 
 
-  const parseResponseText = (text: string) => {
-    const parts = text.split('\n');
+const parseResponseText = (text: string) => {
+  const parts = text.split('\n');
+
+  return parts.map((part, index) => {
+    const trimmedPart = part.trim();
   
-    return parts.map((part, index) => {
-      const trimmedPart = part.trim();
-    
-      // Handle empty strings
-      if (trimmedPart === '') {
-        return <br key={index} />;
-      } else {
-        const boldSplit = part.split('###');
-        const elements = [];
-    
-        for (let i = 0; i < boldSplit.length; i++) {
-          if (i % 2 === 1) {
-            elements.push(
-              <strong key={index + '-' + i} className="font-bold">
-                {boldSplit[i]}
-              </strong>
-            );
-          } else {
-            const boldWithinText = boldSplit[i].split('**');
-    
-            for (let j = 0; j < boldWithinText.length; j++) {
-              if (j % 2 === 1) {
-                elements.push(
-                  <strong key={index + '-' + i + '-' + j} className="font-bold">
-                    {boldWithinText[j]}
-                  </strong>
-                );
-              } else {
-                elements.push(boldWithinText[j]);
-              }
+    // Handle empty strings
+    if (trimmedPart === '') {
+      return <br key={index} />;
+    } else {
+      const boldSplit = part.split('###');
+      const elements = [];
+  
+      for (let i = 0; i < boldSplit.length; i++) {
+        if (i % 2 === 1) {
+          elements.push(
+            <strong key={index + '-' + i} className="font-bold">
+              {boldSplit[i]}
+            </strong>
+          );
+        } else {
+          const boldWithinText = boldSplit[i].split('**');
+  
+          for (let j = 0; j < boldWithinText.length; j++) {
+            if (j % 2 === 1) {
+              elements.push(
+                <strong key={index + '-' + i + '-' + j} className="font-bold">
+                  {boldWithinText[j]}
+                </strong>
+              );
+            } else {
+              elements.push(boldWithinText[j]);
             }
           }
         }
-    
-        return (
-          <p key={index} className="mb-2">
-            {elements}
-          </p>
-        );
       }
-    });
-  };
+  
+      return (
+        <p key={index} className="mb-2">
+          {elements}
+        </p>
+      );
+    }
+  });
+};
 
   return (
     <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
@@ -180,7 +180,7 @@ const LessonPage = ({ params }: LessonPageProps) => {
           </div>
           
           {/* Conditional rendering for Carousel */}
-          {lesson.examples.length > 0 && (
+          {/* {lesson.examples.length > 0 && (
             <Carousel className="w-full max-w-xs mt-8">
               <CarouselContent>
                 {lesson.examples.map((example, index) => (
@@ -197,7 +197,7 @@ const LessonPage = ({ params }: LessonPageProps) => {
               <CarouselPrevious />
               <CarouselNext />
             </Carousel>
-          )}
+          )} */}
 
           
           <div className="mt-8 space-y-4">

@@ -1,13 +1,13 @@
-'use client'
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import Link from 'next/link';
-import LessonTitle from '@/components/ui/lessonTitle';
-import Modal from 'react-modal';
-import { GenerateLesson } from '@/components/generate-lesson';
-import { Button } from '@/components/ui/button';
-import LevelsWrapper from '@/components/levels-wrapper';
-import { useAuth } from '@clerk/nextjs';
+"use client";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Link from "next/link";
+import LessonTitle from "@/components/ui/lessonTitle";
+import Modal from "react-modal";
+import { GenerateLesson } from "@/components/generate-lesson";
+import { Button } from "@/components/ui/button";
+import LevelsWrapper from "@/components/levels-wrapper";
+import { useAuth } from "@clerk/nextjs";
 
 interface Example {
   description: string;
@@ -49,35 +49,36 @@ const RoadmapPage = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const { userId } = useAuth();
   const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
-  console.log("backend url = ", backendUrl)
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get<Level[]>(`${backendUrl}/api/levels`);
         setLevels(response.data);
-        console.log(levels)
+        console.log(levels);
       } catch (err: any) {
-        setError('Failed to fetch levels');
+        setError("Failed to fetch levels");
         console.error(err);
       }
     };
 
     const fetchGeneratedLessons = async () => {
       try {
-        const response = await axios.get<Lesson[]>(`${backendUrl}/api/generatedLessons/user/${userId}`);
+        const response = await axios.get<Lesson[]>(
+          `${backendUrl}/api/generatedLessons/user/${userId}`
+        );
         setGeneratedLessons(response.data);
       } catch (err: any) {
-        setError('Failed to fetch generated lessons');
+        setError("Failed to fetch generated lessons");
         console.error(err);
       }
     };
 
-  
     const initializeUser = async () => {
       try {
         await axios.post(`${backendUrl}/api/users`, { userId });
       } catch (err: any) {
-        console.error('Failed to initialize user:', err);
+        console.error("Failed to initialize user:", err);
       }
     };
 
@@ -102,26 +103,41 @@ const RoadmapPage = () => {
   }
 
   return (
-    <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold mb-11 text-center pb-10">План уроков фотографии</h1>
-        <div
-            className="w-full h-90 lg:h-screen lg:bg-[url('/images/roadmap.png')] 
-            lg:bg-contain lg:bg-center lg:bg-no-repeat
-            md:w-screen md:bg-[url('/images/roadmap_vert.png')] 
-            md:bg-contain md:bg-center md:bg-no-repeat"
-         >
-            <div className="grid grid-cols-7 gap-2 pl-11 ml-6 ">
-              {levels.map((level) => (
-                <div key={level._id} className="col-span-6 md:col-span-7 lg:col-span-2 ">
-                  <h2 className="text-xl font-bold mb-4 pl-11 lg:ml-10">{level.level}</h2>
-                  <div className="space-y-4 py-20">
-                    <LevelsWrapper levelId={level._id} sublevels={level.sublevels} />
-                  </div>
-                </div>
-              ))}
+    <div className="container max-w-5xl py-12 px-4 sm:px-6 xl:px-8 relative">
+      <h1 className="text-3xl font-bold mb-11 text-center pb-10">
+        План уроков фотографии
+      </h1>
+      <div
+        className="w-full  boarder boarder-black 
+            sm:bg-[url('/images/roadmap-vertical1.png')] 
+            sm:bg-contain sm:bg-center sm:bg-no-repeat "
+      >
+        <div className="grid ml-6">
+          {levels.map((level) => (
+            <div key={level._id} className={`  mt-2 ${
+              level._id === '66abc6d753be9fcf0d771ab7'
+              ? "mt-6"
+              : ""
+              
+            }`}>
+              <div className="pl-11">
+                
+              </div>
+              <h2 className="text-xl text-center font-bold pl-11  ">
+                {level.level}
+              </h2>
+              
+              <div className="space-y-4">
+                <LevelsWrapper
+                  levelId={level._id}
+                  sublevels={level.sublevels}
+                />
+              </div>
             </div>
+          ))}
         </div>
-      <div className="mt-8 md:col-span-2 lg:col-span-1">
+      </div>
+      <div className="mt-8 md:col-span-2 xl:col-span-1">
         <div className="text-left">
           <h2 className="text-xl font-bold mb-4">Персональные уроки</h2>
         </div>
@@ -136,16 +152,18 @@ const RoadmapPage = () => {
             </div>
           ))}
         </div>
-       </div>
-        <Button onClick={openModal} className="mt-8">Сгенерировать Урок</Button>
-        <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={closeModal}
-          contentLabel="Generate Lesson"
-          className="flex items-center justify-center"
-        >
-          <GenerateLesson onClose={closeModal} />
-        </Modal>
+      </div>
+      <Button onClick={openModal} className="mt-8">
+        Сгенерировать Урок
+      </Button>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Generate Lesson"
+        className="flex items-center justify-center"
+      >
+        <GenerateLesson onClose={closeModal} />
+      </Modal>
     </div>
   );
 };
