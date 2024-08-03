@@ -48,8 +48,8 @@ export default function LevelsWrapper({
           key={sublevel._id}
           className={`min-h-[100px] py-3 px-4 my-11 mx-auto  shadow-md shadow-orange-950 rounded-xl ${
             index % 2 === 0
-              ? "bg-transparent w-full sm:w-[200px] md:w-1/4 sm:h-[170px] md:h-[210px] md:min-w-[230px] mt-2 sm:ml-[30%] pl-5  md:mt-3"
-              : "bg-transparent w-full sm:w-[200px] sm:h-[180px] md:h-[220px] md:w-1/4 md:min-w-[230px] sm:mr-[33%] pl-5"
+              ? "bg-transparent w-full sm:w-[200px] md:w-1/4 sm:h-[170px] md:h-[230px] md:min-w-[230px] mt-2 sm:ml-[30%] pl-5  md:mt-3"
+              : "bg-transparent w-full sm:w-[200px] sm:h-[180px] md:h-[230px] md:w-1/4 md:min-w-[230px] sm:mr-[33%] pl-5"
            
           }`}
         >
