@@ -2,7 +2,11 @@ import React from 'react';
 import PreviewMainPage from '../mainPage';
 import Link from "next/link";
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  onScrollToUpload: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onScrollToUpload }) => {
   return (
     <header className="relative w-full h-screen overflow-hidden">
       <div
@@ -27,13 +31,12 @@ const Header: React.FC = () => {
           Персонализированные уроки в зависимости от вашего уровня и скиллов в фотографии. Выполняй задания после каждого урока и получай обратную связь за считанные секунды.
         </p>
         <div className="mt-4 text-center hidden sm:block">
-          <Link
-            href="#"
+          <button
+            onClick={onScrollToUpload}
             className="block px-6 py-2 transition ease-in duration-200 uppercase text-white rounded-full hover:bg-orange-600 hover:border-orange-600 hover:text-white border-2 border-white focus:outline-none"
-            prefetch={false}
           >
             Получить фидбэк
-          </Link>
+          </button>
         </div>
       </div>
       
@@ -43,13 +46,12 @@ const Header: React.FC = () => {
             Персонализированные уроки в зависимости от вашего уровня и скиллов в фотографии. Выполняй задания после каждого урока и получай обратную связь за считанные секунды.
           </p>
           <div className="mt-4 text-center">
-            <Link
-              href="#"
-              className="block px-6 py-2 transition ease-in duration-200 uppercase text-white rounded-full hover:bg-orange-600 hover:border-orange-600 hover:text-white border-2 border-white focus:outline-none"
-              prefetch={false}
+            <button
+            onClick={onScrollToUpload}
+            className="block px-6 py-2 transition ease-in duration-200 uppercase text-white rounded-full hover:bg-orange-600 hover:border-orange-600 hover:text-white border-2 border-white focus:outline-none"
             >
-              Получить фидбэк
-            </Link>
+            Получить фидбэк
+          </button>
           </div>
         </div>
       </div>
