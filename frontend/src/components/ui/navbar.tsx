@@ -56,10 +56,10 @@ export default function Component() {
           <div className="hidden md:flex space-x-4">
             <NavLink href="/"  text="Оценить фото" />
             <NavLink href="/roadmap" text="Курс" />
-            {/* <NavLink href="#" text="Галлерея" /> */}
-            {/* <NavLink href="#" text="О Нас" /> */}
+            <NavLink href="#" text="Галлерея" />
+            <NavLink href="#" text="О Нас" />
             <SignedIn>
-              {/* <NavLink href="/profile" text="Профиль" /> */}
+              <NavLink href="/profile" text="Профиль" />
               <UserButton />
             </SignedIn>
             <SignedOut>
