@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react"; // Using lucide-react for close icon
+import { useAuth } from '@clerk/nextjs';
 
 interface GenerateLessonProps {
   onClose: () => void;
@@ -14,13 +15,15 @@ export function GenerateLesson({ onClose }: GenerateLessonProps) {
   const [topic, setTopic] = useState('');
   const [error, setError] = useState<string | null>(null);
   const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+  const { userId } = useAuth();
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!topic) {
       setError('Please enter a topic');
       return;
     }
-    const user_id_placeholder = 1;
+    onClose();
 
     try {
       const response = await fetch(`${backendUrl}/api/gpt/generate-lesson`, {
@@ -28,7 +31,7 @@ export function GenerateLesson({ onClose }: GenerateLessonProps) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ title: topic, userId: user_id_placeholder }), 
+        body: JSON.stringify({ title: topic, userId: userId }), 
       });
 
       if (!response.ok) {
