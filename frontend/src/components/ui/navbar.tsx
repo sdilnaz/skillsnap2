@@ -1,10 +1,16 @@
-'use client'
+"use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "./button";
 import { useRouter } from "next/navigation";
-import { SignedIn, SignedOut, SignInButton, UserButton, useAuth } from "@clerk/nextjs";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+  useAuth,
+} from "@clerk/nextjs";
 
 interface NavLinkProps {
   href: string;
@@ -26,8 +32,8 @@ export default function Component() {
       setIsMobile(window.innerWidth <= 870);
     };
     handleResize(); // Check on initial load
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const toggleMenu = () => {
@@ -41,20 +47,22 @@ export default function Component() {
   return (
     <header className="navbar sticky top-0 z-50 flex h-16 w-full items-center justify-between px-4 md:px-6 bg-white">
       <Link href="/" className="flex items-center gap-2" prefetch={false}>
-        <Image 
-          src="/images/logo.png" 
-          alt="SkillSnap Logo" 
-          width={80} 
-          height={80} 
+        <Image
+          src="/images/logo.png"
+          alt="SkillSnap Logo"
+          width={80}
+          height={80}
           priority
           className="cursor-pointer"
         />
-        <span className="text-lg sm:text-xl md:text-2xl font-semibold">SkillSnap</span>
+        <span className="text-lg sm:text-xl md:text-2xl font-semibold">
+          SkillSnap
+        </span>
       </Link>
       <nav className="flex items-center space-x-4">
         {window.innerWidth > 870 ? (
           <div className="hidden md:flex space-x-4">
-            <NavLink href="/"  text="Оценить фото" />
+            <NavLink href="/" text="Оценить фото" />
             <NavLink href="/roadmap" text="Курс" />
             {/* <NavLink href="#" text="Галлерея" /> */}
             {/* <NavLink href="#" text="О Нас" /> */}
@@ -63,15 +71,20 @@ export default function Component() {
               <UserButton />
             </SignedIn>
             <SignedOut>
-              <SignInButton mode="modal">
-                <button className="inline-flex h-9 w-max items-center justify-center rounded-full border border-foreground bg-transparent px-4 py-2 text-sm md:text-base font-medium text-foreground transition-colors hover:bg-accent hover:text-black focus:bg-accent focus:text-black focus:outline-none">
+              <Link href="/sign-in">
+                <button className="inline-flex h-9 w-max items-center justify-center rounded-full border border-foreground bg-transparent px-4 py-2 text-sm md:text-base font-medium text-foreground transition-colors hover:bg-orange-600 hover:border-orange-600 hover:text-white focus:bg-accent focus:text-black focus:outline-none">
                   Вход
                 </button>
-              </SignInButton>
+              </Link>
             </SignedOut>
           </div>
         ) : (
-          <Button variant="primary" size="icon" className="ml-auto lg:hidden bg-transparent hover:bg-transparent" onClick={toggleMenu}>
+          <Button
+            variant="primary"
+            size="icon"
+            className="ml-auto lg:hidden bg-transparent hover:bg-transparent"
+            onClick={toggleMenu}
+          >
             <MenuIcon className="h-6 w-6" />
             <span className="sr-only">Toggle navigation menu</span>
           </Button>
@@ -80,8 +93,18 @@ export default function Component() {
       {isOpen && (
         <div className="absolute top-16 left-0 w-full bg-white bg-opacity-90 px-4 py-4 shadow-lg lg:hidden">
           <nav className="flex flex-col items-center gap-2">
-            <NavLink href="/" text="Оценить фото" onClick={closeMenu} className="w-[150px] h-[30px]" />
-            <NavLink href="/roadmap" text="Курс" onClick={closeMenu} className="w-[150px] h-[30px]" />
+            <NavLink
+              href="/"
+              text="Оценить фото"
+              onClick={closeMenu}
+              className="w-[150px] h-[30px]"
+            />
+            <NavLink
+              href="/roadmap"
+              text="Курс"
+              onClick={closeMenu}
+              className="w-[150px] h-[30px]"
+            />
             {/* <NavLink href="#" text="Галлерея" onClick={closeMenu} className="w-[150px] h-[30px]" /> */}
             {/* <NavLink href="#" text="О Нас" onClick={closeMenu} className="w-[150px] h-[30px]" /> */}
             <SignedIn>
@@ -89,14 +112,14 @@ export default function Component() {
               <UserButton />
             </SignedIn>
             <SignedOut>
-              <SignInButton mode="modal">
-              <button
+              <Link href="/sign-in">
+                <button
                   className="inline-flex w-[150px] h-[30px] items-center justify-center rounded-full border border-foreground bg-transparent px-4 py-2 text-sm md:text-base font-medium text-foreground transition-colors hover:bg-orange-600 hover:border-orange-600 hover:text-white focus:bg-accent focus:text-black focus:outline-none"
                   onClick={closeMenu}
                 >
                   Вход
                 </button>
-              </SignInButton>
+              </Link>
             </SignedOut>
           </nav>
         </div>
@@ -105,7 +128,12 @@ export default function Component() {
   );
 }
 
-function NavLink({ href, text, onClick, className }: NavLinkProps & { onClick?: () => void, className?: string }) {
+function NavLink({
+  href,
+  text,
+  onClick,
+  className,
+}: NavLinkProps & { onClick?: () => void; className?: string }) {
   return (
     <Link
       href={href}
